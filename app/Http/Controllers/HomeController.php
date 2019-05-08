@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Category;
+use App\Product;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +17,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $products = Product::orderby('id','desc')->take(8)->get();
+        $data['products'] = $products;
+        return view('home')->with($data);
     }
+    
+    public function logout() {
+      Auth::logout();
+      return redirect('/home');
+    }
+
 }

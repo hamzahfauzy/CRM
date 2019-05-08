@@ -1,13 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+
+
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
+    <!--================Login Box Area =================-->
+    <section class="login_box_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login_box_img">
+                        <img class="img-fluid" src="{{ asset('img/login.jpg') }}" alt="">
+                        <div class="hover">
+                            <h4>Create your  account!</h4>
+                            <p></p>
+                            <a class="primary-btn" href="{{ route('register') }}">Create an Account</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="login_form_inner">
+                        <h3>Log in to enter</h3>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -65,9 +77,11 @@
                             </div>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+    <!--================End Login Box Area =================-->
+
 @endsection
